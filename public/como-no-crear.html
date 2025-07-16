@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como NO crear tu propio servidor de streaming gratuito con Docker y Jellyfin - Elkin Vega</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1em;
+            border-radius: 0.5em;
+            overflow-x: auto;
+            white-space: pre-wrap; /* Allows text to wrap */
+            word-wrap: break-word; /* Breaks long words */
+            font-family: 'Fira Code', 'Cascadia Code', 'Consolas', 'Monaco', monospace; /* Modern monospaced fonts */
+            line-height: 1.4;
+            font-size: 0.9em;
+        }
+        pre code {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <a href="index.html" class="text-xl font-bold text-gray-900 tracking-tight">Elkin Vega</a>
+                <nav class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#about" class="text-gray-600 hover:text-blue-600 transition-colors">Sobre mí</a>
+                    <a href="index.html#experience" class="text-gray-600 hover:text-blue-600 transition-colors">Experiencia</a>
+                    <a href="index.html#projects" class="text-gray-600 hover:text-blue-600 transition-colors">Proyectos</a>
+                    <a href="index.html#blog" class="text-blue-600 hover:text-blue-600 transition-colors">Blog</a>
+                    <a href="index.html#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">Contacto</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main class="pt-20 pb-16">
+        <div class="max-w-3xl mx-auto px-6 bg-white shadow-lg rounded-lg p-8">
+            <h1 class="text-4xl font-extrabold text-gray-900 mb-6 text-center">Como NO crear tu propio servidor de streaming gratuito con Docker (Jellyfin, Sonarr, Radarr, Jackett, Transmission)</h1>
+            <img src="images/comonocrear.jpg" alt="Imagen de artículo sobre servidor de streaming" class="w-full h-80 object-cover rounded-lg mb-8">
+            
+            <div class="prose max-w-none text-gray-700 leading-relaxed">
+                <p class="text-lg mb-4">
+                    ¿Te imaginas tener tu propio "Netflix casero" que descargue automáticamente series y películas, y te permita verlas en cualquier dispositivo, sin depender de plataformas externas?
+                </p>
+                <p class="text-lg mb-4">
+                    Con este artículo aprenderás cómo <strong class="text-red-600">NO</strong> se debe montar un servidor de streaming casero usando herramientas libres como Jellyfin, Sonarr, Radarr, Jackett, y Transmission, todo orquestado con contenedores Docker, lanzados a través de Docker Compose.
+                </p>
+                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mt-6 mb-4" role="alert">
+                    <p class="font-bold"><i class="fas fa-exclamation-triangle mr-2"></i>Advertencia legal:</p>
+                    <p>Este artículo tiene fines educativos y didácticos. El uso de herramientas como Jackett, Sonarr, Radarr y Transmission para descargar contenido protegido por derechos de autor puede ser ilegal en tu jurisdicción. Se recomienda encarecidamente utilizar estas herramientas únicamente con contenido de dominio público o con el debido permiso del titular de los derechos de autor.</p>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Tecnologías a utilizar</h2>
+                <img src="images/celular.png" alt="Tecnologías a utilizar (Mobile)" class="w-full rounded-lg mb-8 md:hidden">
+                <img src="images/tenologiaausar.png" alt="Tecnologías a utilizar (Desktop)" class="w-full rounded-lg mb-8 hidden md:block">
+                
+                <h3 class="text-xl font-semibold text-gray-900 mt-6 mb-3">Jellyfin</h3>
+                <p class="mb-4">
+                    Jellyfin es un servidor multimedia de código abierto que permite organizar, gestionar y reproducir tus archivos de vídeo, música e imágenes desde cualquier dispositivo conectado a tu red. Funciona como un "Netflix casero", escaneando las carpetas que le indiques (como `/media/movies` o `/media/tv`) y creando automáticamente una biblioteca con carátulas, descripciones y metadatos descargados de internet. En este proyecto, Jellyfin es la interfaz principal desde la que accedemos al contenido descargado por Sonarr y Radarr, permitiéndonos ver películas y series desde el navegador, móvil, Smart TV o incluso a través de apps oficiales, todo de forma centralizada y personalizada. 
+                </p>
+
+                <div class="mb-8">
+                    <video controls class="w-full rounded-lg">
+                        <source src="images/jellyfin.mp4" type="video/mp4">
+                        Tu navegador no soporta el tag de video.
+                    </video>
+                </div>
+
+                <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Requisitos previos</h2>
+                <ul class="list-disc list-inside mb-4">
+                    <li>Un ordenador / servidor o MV Linux (recomendado). Windows o Mac</li>
+                    <li>Docker y Docker Compose instalados.</li>
+                    <li>Carpeta del proyecto con la siguiente estructura:
+                        <pre><code>media-server/
+├── docker-compose.yml
+├── config/
+│   ├── jellyfin/
+│   ├── sonarr/
+│   ├── radarr/
+│   ├── transmission/
+│   └── jackett/
+├── downloads/ # Descargas de Transmission
+├── media/
+│   ├── tv/ # Series para Sonarr
+│   └── movies/ # Pelis para Radarr
+└── watch/ # (opcional) Torrents .torrent</code></pre>
+                    </li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">Archivo docker-compose.yml</h2>
+                <p class="mb-4">Este archivo define todos los servicios y sus configuraciones para Docker Compose:</p>
+                <pre><code class="language-yaml">version: "3.9"
+services:
+  jellyfin:
+    image: jellyfin/jellyfin
+    container_name: jellyfin
+    ports:
+      - "8096:8096"
+    volumes:
+      - ./config/jellyfin:/config
+      - ./media:/media
+    restart: unless-stopped
+
+  sonarr:
+    image: linuxserver/sonarr
+    container_name: sonarr
+    ports:
+      - "8989:8989"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - ./config/sonarr:/config
+      - ./downloads:/downloads
+      - ./media/tv:/tv
+    restart: unless-stopped
+
+  radarr:
+    image: linuxserver/radarr
+    container_name: radarr
+    ports:
+      - "7878:7878"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - ./config/radarr:/config
+      - ./downloads:/downloads
+      - ./media/movies:/movies
+    restart: unless-stopped
+
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    ports:
+      - "9091:9091"
+      - "51413:51413"
+      - "51413:51413/udp"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+      - USER=nico
+      - PASS=1234
+    volumes:
+      - ./downloads:/downloads
+      - ./config/transmission:/config
+      - ./watch:/watch
+    restart: unless-stopped
+
+  jackett:
+    image: linuxserver/jackett
+    container_name: jackett
+    ports:
+      - "9117:9117"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Madrid
+    volumes:
+      - ./config/jackett:/config
+      - ./downloads:/downloads
+    restart: unless-stopped
+</code></pre>
+
+                <p class="mb-4">Para levantar el servicio, ve a la carpeta "media-server/" y lanza el siguiente comando:</p>
+                <pre><code class="language-bash">docker compose up -d</code></pre>
+                <p class="mb-4">Este archivo lanza todos los servicios cada uno en contenedores individuales, de modo que son sencillos de manipular y monitorear. Para acceder a cada una de la interfaces web, utiliza las siguientes URLs (o cambia los puertos en el docker-compose):</p>
+                <ul class="list-disc list-inside mb-6">
+                    <li>Jellyfin: `http://IPdelServidor:8096`</li>
+                    <li>Sonarr: `http://IPdelServidor:8989`</li>
+                    <li>Radarr: `http://IPdelServidor:7878`</li>
+                    <li>Transmission: `http://IPdelServidor:9091`</li>
+                    <li>Jackett: `http://IPdelServidor:9117`</li>
+                </ul>
+
+                <h2 class="text-2xl font-bold text-gray-900 mt-8 mb-4">🔒 Consejos de seguridad y acceso remoto</h2>
+                <ul class="list-disc list-inside mb-4">
+                    <li><strong>No expongas directamente los puertos en Internet:</strong> utiliza una VPN o red privada virtual para acceder de forma segura a tu servidor.</li>
+                    <li><strong>Usa Tailscale:</strong> crea una red privada entre tu PC y tu móvil sin necesidad de abrir puertos. Es gratis para uso personal y muy fácil de configurar.</li>
+                    <li><strong>Cambia las contraseñas por defecto:</strong> Transmission, Jellyfin y otros servicios pueden tener credenciales por defecto. Cámbialas siempre.</li>
+                    <li><strong>Haz copias de seguridad:</strong> al menos del contenido descargado y de las configuraciones de tus contenedores (`/config`).</li>
+                    <li><strong>Actualiza regularmente:</strong> tanto las imágenes Docker como las aplicaciones internas. Puedes usar `watchtower` si quieres automatizarlo.</li>
+                </ul>
+                <p class="text-lg mb-6">
+                    Si decides exponer tus servicios a Internet (por ejemplo, para ver tus pelis fuera de casa), considera usar un proxy inverso con HTTPS y autenticación. También puedes usar un dominio con DuckDNS o No-IP para facilitar el acceso remoto seguro.
+                </p>
+            </div>
+
+            <div class="mt-10 pt-6 border-t border-gray-200 text-sm text-gray-500 flex justify-between items-center">
+                <span>Publicado: 16 de Julio de 2025</span>
+                <a href="index.html#blog" class="text-blue-600 hover:text-blue-800 font-medium inline-flex items-center">
+                    <i class="fas fa-arrow-left mr-2"></i>Volver al Blog
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-5xl mx-auto py-8 px-6 text-center">
+            <p class="text-gray-500 text-sm">&copy; 2025 Elkin Vega. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+</body>
+</html>

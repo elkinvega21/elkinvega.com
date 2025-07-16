@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Elkin Vega - Desarrollador de Software & Analista de Datos</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilo para la línea de tiempo */
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            width: 1rem;
+            height: 1rem;
+            border-radius: 50%;
+            left: -0.5rem;
+            top: 0.25rem;
+            background-color: #3b82f6; /* blue-500 */
+            border: 4px solid #f9fafb; /* gray-50 */
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800">
+
+    <header class="bg-white/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-sm">
+        <div class="max-w-5xl mx-auto px-6">
+            <div class="flex items-center justify-between h-16">
+                <a href="#" class="text-xl font-bold text-gray-900 tracking-tight">Elkin Vega</a>
+                <button id="mobile-menu-button" class="md:hidden text-gray-600 hover:text-blue-600 focus:outline-none">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"></path>
+                    </svg>
+                </button>
+                <nav id="main-nav" class="hidden md:flex items-center space-x-8">
+                    <a href="#about" class="text-gray-600 hover:text-blue-600 transition-colors">Sobre mí</a>
+                    <a href="#experience" class="text-gray-600 hover:text-blue-600 transition-colors">Experiencia</a>
+                    <a href="#projects" class="text-gray-600 hover:text-blue-600 transition-colors">Proyectos</a>
+                    <a href="#blog" class="text-gray-600 hover:text-blue-600 transition-colors">Blog</a>
+                    <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors">Contacto</a>
+                </nav>
+            </div>
+            <nav id="mobile-menu" class="md:hidden hidden flex flex-col space-y-4 py-4 text-center">
+                <a href="#about" class="text-gray-800 hover:text-blue-600 transition-colors block">Sobre mí</a>
+                <a href="#experience" class="text-gray-800 hover:text-blue-600 transition-colors block">Experiencia</a>
+                <a href="#projects" class="text-gray-800 hover:text-blue-600 transition-colors block">Proyectos</a>
+                <a href="#blog" class="text-gray-800 hover:text-blue-600 transition-colors block">Blog</a>
+                <a href="#contact" class="bg-blue-600 text-white px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-700 transition-colors block mx-auto w-fit">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="pt-16">
+        <section id="hero" class="py-20 md:py-32">
+            <div class="max-w-4xl mx-auto text-center px-6">
+                <h1 class="text-4xl md:text-6xl font-extrabold text-gray-900 tracking-tighter mb-4">
+                    Desarrollador de Software y Analista de Datos
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto mb-8">
+                    Estudiante de Ingeniería de Sistemas apasionado por construir soluciones tecnológicas y extraer valor de los datos.
+                </p>
+                <div class="flex justify-center items-center space-x-6">
+                    <a href="https://github.com/elkinvega21" target="_blank" class="text-gray-500 hover:text-blue-600 transition-colors">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/elkinvega/" target="_blank" class="text-gray-500 hover:text-blue-600 transition-colors">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                    <a href="mailto:Elkindvegac@unac.edu.co" class="text-gray-500 hover:text-blue-600 transition-colors">
+                        <i class="fas fa-envelope fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 bg-white">
+            <div class="max-w-5xl mx-auto px-6 grid md:grid-cols-3 gap-12 items-center">
+                <div class="md:col-span-1 flex justify-center">
+                    <img src="perfil.jpg" alt="Foto de Elkin Vega" class="w-48 h-48 rounded-full object-cover shadow-lg">
+                </div>
+                <div class="md:col-span-2">
+                    <h2 class="text-3xl font-bold text-gray-900 mb-4">Sobre Mí</h2>
+                    <p class="text-gray-600 mb-4">
+                        Soy estudiante de sexto semestre de Ingeniería de Sistemas en la Corporación Universitaria UNAC. Me especializo en el desarrollo de soluciones tecnológicas innovadoras, con un fuerte interés en el análisis de datos y la creación de aplicaciones que resuelvan problemas del mundo real.
+                    </p>
+                    <p class="text-gray-600">
+                        Mi formación se complementa con certificaciones de Google y Microsoft en áreas como marketing digital, comercio electrónico y análisis de datos. Busco oportunidades para aplicar mis habilidades en entornos desafiantes y colaborar en proyectos que impulsen el crecimiento y la eficiencia a través de la tecnología.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20">
+            <div class="max-w-3xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Experiencia Profesional</h2>
+                <div class="relative border-l-2 border-blue-200 pl-8 space-y-12">
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-semibold text-gray-900">Desarrollador Backend y Diseñador de Sistemas</h3>
+                        <p class="text-blue-600 font-medium mb-1">Proyecto Personal - API ERP para PYMES</p>
+                        <p class="text-sm text-gray-500 mb-2">Mayo 2025 - Presente</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Desarrollo de una API RESTful para la gestión de PYMES con un sistema ERP modular.</li>
+                            <li>Implementación de módulos de inventario, contabilidad y clientes usando Python, FastAPI y PostgreSQL.</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-semibold text-gray-900">Desarrollador Frontend y Diseñador UI</h3>
+                        <p class="text-blue-600 font-medium mb-1">Proyecto Personal - Sistema UNAC-ERP</p>
+                        <p class="text-sm text-gray-500 mb-2">Mayo 2025 - Presente</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Diseño e implementación de interfaces responsivas para un sistema ERP.</li>
+                            <li>Uso de React y Tailwind CSS para construir componentes dinámicos e intuitivos.</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-semibold text-gray-900">Colaborador de Comunicaciones Digitales</h3>
+                        <p class="text-blue-600 font-medium mb-1">Universidad UNAC, Medellín</p>
+                        <p class="text-sm text-gray-500 mb-2">Mayo 2024 - Feb 2025</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Desarrollo y ejecución de estrategias de comunicación digital para eventos académicos.</li>
+                            <li>Administración de redes sociales, creando contenido atractivo y relevante.</li>
+                        </ul>
+                    </div>
+                    <div class="timeline-item">
+                        <h3 class="text-xl font-semibold text-gray-900">Ganador de 3er Puesto en DataHack</h3>
+                        <p class="text-blue-600 font-medium mb-1">Universidad Pascual Bravo, Medellín</p>
+                        <p class="text-sm text-gray-500 mb-2">Mayo 2025</p>
+                        <ul class="list-disc list-inside text-gray-600 space-y-1">
+                            <li>Desarrollo de un módulo funcional para visualizar indicadores de negocio con Python, Streamlit y Matplotlib.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 bg-white">
+            <div class="max-w-5xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Proyectos Destacados</h2>
+                <div class="grid md:grid-cols-2 gap-8">
+                    <div class="bg-gray-50 rounded-lg p-6 hover:shadow-xl transition-shadow">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Visualización de Indicadores para ERP</h3>
+                        <p class="text-gray-600 mb-4">Módulo funcional que permite a usuarios visualizar indicadores clave de su negocio, desarrollado en el DataHack 2025.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Python</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Streamlit</span>
+                            <span class="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Matplotlib</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6 hover:shadow-xl transition-shadow">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Monitoreo de Paneles Solares</h3>
+                        <p class="text-gray-600 mb-4">Sistema de monitoreo para verificar el consumo de energía y ver indicadores en tiempo real de paneles solares.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">React</span>
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Java</span>
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">MySQL</span>
+                            <span class="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded-full">TensorFlow</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6 hover:shadow-xl transition-shadow">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">App para Desempeño Académico</h3>
+                        <p class="text-gray-600 mb-4">Aplicación móvil para estudiantes que utiliza una red neuronal para mejorar el desempeño académico.</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Machine Learning</span>
+                            <span class="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Bases de Datos</span>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg p-6 hover:shadow-xl transition-shadow">
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Predicción de Precios de Casas</h3>
+                        <p class="text-gray-600 mb-4">Modelo de regresión avanzada desarrollado en Kaggle para predecir el precio de las casas (House Prices).</p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Kaggle</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Python</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Pandas</span>
+                            <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded-full">Regresión</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section id="skills" class="py-20">
+            <div class="max-w-5xl mx-auto px-6">
+                <h2 class="text-3xl font-bold text-gray-900 text-center mb-12">Habilidades Técnicas</h2>
+                <div class="grid md:grid-cols-3 gap-8 text-center">
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <i class="fas fa-code fa-2x text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Desarrollo de Software</h3>
+                        <p class="text-gray-600">Python, Java, R, JavaScript, Node.js, HTML, CSS, FastAPI, PostgreSQL, React, Tailwind CSS, Git.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <i class="fas fa-chart-line fa-2x text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Análisis de Datos</h3>
+                        <p class="text-gray-600">Pandas, TensorFlow, Matplotlib, Scikit-learn, Excel. Modelos predictivos, regresión y visualización.</p>
+                    </div>
+                    <div class="bg-white p-6 rounded-lg shadow-md">
+                        <i class="fas fa-tools fa-2x text-blue-600 mb-4"></i>
+                        <h3 class="text-xl font-semibold text-gray-900 mb-2">Marketing y Diseño</h3>
+                        <p class="text-gray-600">Google Cloud, Azure, Canva, Adobe Illustrator, Adobe Photoshop, Comunicación digital.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="blog" class="py-20 bg-white">
+            <div class="max-w-5xl mx-auto px-6 text-center">
+                <h2 class="text-3xl font-bold text-gray-900 mb-4">
+                    Blog
+                </h2>
+                <div class="grid md:grid-cols-2 gap-8 text-left">
+                    <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                        <img src="images/ciencidedatos.jpg" alt="Imagen de artículo sobre algoritmos genéticos" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Optimiza tu día con algoritmos genéticos</h3>
+                            <p class="text-gray-600 text-sm mb-4">En este artículo aprenderás a crear un algoritmo genético usando python, cómo unir webs o programas de python a una bbddd en la nube...</p>
+                            <div class="flex items-center justify-between text-gray-500 text-sm mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-comments mr-1"></i>
+                                    <span>2 comentarios</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                    <span>10.0/10</span>
+                                </div>
+                            </div>
+                            <a href="optimiza-dia.html" class="text-blue-600 hover:text-blue-800 font-medium">Ver más</a>
+                        </div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-shadow">
+                        <img src="images/comonocrear.jpg" alt="Imagen de artículo sobre servidor de streaming" class="w-full h-48 object-cover">
+                        <div class="p-6">
+                            <h3 class="text-xl font-semibold text-gray-900 mb-2">Como NO crear tu propio servidor de streaming gratuito con Docker y Jellyfin</h3>
+                            <p class="text-gray-600 text-sm mb-4">¿Te imaginas tener tu propio "Netflix casero" que descargue automáticamente series y películas?</p>
+                            <div class="flex items-center justify-between text-gray-500 text-sm mb-4">
+                                <div class="flex items-center">
+                                    <i class="fas fa-comments mr-1"></i>
+                                    <span>6 comentarios</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <i class="fas fa-star text-yellow-400 mr-1"></i>
+                                    <span>10.0/10</span>
+                                </div>
+                            </div>
+                            <a href="como-no-crear.html" class="text-blue-600 hover:text-blue-800 font-medium">Ver más</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer id="contact" class="bg-gray-900 text-white">
+        <div class="max-w-5xl mx-auto py-16 px-6 text-center">
+            <h2 class="text-3xl font-bold mb-4">Ponte en Contacto</h2>
+            <p class="text-gray-400 max-w-xl mx-auto mb-8">
+                Siempre estoy abierto a conectar, colaborar en proyectos interesantes o explorar nuevas oportunidades. ¡No dudes en escribirme!
+            </p>
+            <a href="CV-2025-ELKIN (1).pdf" download class="inline-block bg-blue-600 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-700 transition-colors mb-12">
+                <i class="fas fa-download mr-2"></i>Descargar CV
+            </a>
+            <div class="flex justify-center items-center space-x-6 mb-8">
+                <a href="https://github.com/elkinvega21" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-github fa-2x"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/elkinvega/" target="_blank" class="text-gray-400 hover:text-white transition-colors">
+                    <i class="fab fa-linkedin fa-2x"></i>
+                </a>
+            </div>
+            <p class="text-gray-500 text-sm">&copy; 2025 Elkin Vega. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            var mobileMenu = document.getElementById('mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked (for smoother navigation)
+        document.querySelectorAll('#mobile-menu a').forEach(item => {
+            item.addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            });
+        });
+    </script>
+
+</body>
+</html>
